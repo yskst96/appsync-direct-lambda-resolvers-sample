@@ -7,4 +7,4 @@ import { config } from 'dotenv'
 config()
 
 const app = new cdk.App();
-new CdkStack(app, 'CdkStack');
+new CdkStack(app, 'AppSyncDirectLambdaResolverStack');

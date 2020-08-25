@@ -1,0 +1,10 @@
+type Comment {
+  id: ID!
+  text: String
+  date: AWSDateTime
+}
+
+type Query {
+  getComment(id: ID): Comment
+  listComments: [Comment]
+}

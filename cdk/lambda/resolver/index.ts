@@ -1,13 +1,31 @@
 'use strict'
-import { APIGatewayProxyHandler } from 'aws-lambda'
 
-export const handler: APIGatewayProxyHandler = async (event) => {
+import { Handler } from 'aws-lambda'
+const db = [{
+    id: 'c111',
+    text: 'hello',
+    date: new Date()
+}, {
+    id: 'c222',
+    text: 'goodbye',
+    date: new Date()
+}]
 
-    console.log("lambda1 start");
-    console.log(event);
+export const handler: Handler = async (event: any, context: any) => {
 
-    return {
-        statusCode: 200,
-        body: "success"
+    console.log("lambda start");
+    console.log('event', event);
+    console.log('context', context);
+
+    const field = event.info.fieldName
+
+    if (field === 'listComments') {
+        return db
+    } else {
+
+        const id = event.arguments.id
+
+        return db.find(m => m.id === id)
     }
+
 }
